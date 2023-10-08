@@ -1,21 +1,30 @@
 "use client";
-import { useCart } from "@/context/cart";
 import React from "react";
+import { useCart } from "@/context/cart";
+import { IProduct } from "@/types/product";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AddToCartButton = () => {
-  const { addToCart } = useCart();
+interface IAddToCartButtonProps {
+  productData: IProduct;
+}
+
+const AddToCartButton = ({ productData }: IAddToCartButtonProps) => {
+  const cartContext = useCart();
+  if (!cartContext) return null;
+  const { addToCart } = cartContext;
 
   function handleAddToCart() {
-    addToCart({
-      id: 1,
-      title: "teste",
-      price: 10,
-      image: "teste",
-      description: "teste",
+    if (!productData) {
+      return;
+    }
+
+    const product = {
+      ...productData,
       quantity: 1,
-    });
+    };
+
+    addToCart(product);
 
     toast("Produto adicionado carrinho!");
   }

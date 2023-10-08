@@ -1,5 +1,6 @@
 import React from "react";
 import "./header.scss";
+import MiniCart from "../Minicart";
 
 const Header = () => {
   return (
@@ -22,15 +23,7 @@ const Header = () => {
           </ul>
         </nav>
         <div className="header__cart">
-          <button className="header__cart-button">
-            <figure className="header__cart-icon">
-              <img
-                src="/images/icon-minicart.svg"
-                alt="Ícone do Carrinho de Compras"
-              />
-            </figure>
-            CART
-          </button>
+          <MiniCart />
         </div>
       </div>
     </header>

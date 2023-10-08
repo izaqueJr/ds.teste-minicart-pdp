@@ -1,12 +1,27 @@
 "use client";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { IProduct } from "@/types/product";
 import { IChildrenProps } from "@/types/children";
+import { CartContextType } from "@/types/CartContextType";
 
-const CartContext = createContext({});
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: IChildrenProps) => {
   const [cart, setCart] = useState<IProduct[]>([]);
+  const [openCart, setOpenCart] = useState<boolean>(false);
+
+  const previousCart =
+    typeof window !== "undefined" ? localStorage.getItem("cart") : null;
+
+  useEffect(() => {
+    if (previousCart) {
+      setCart(JSON.parse(previousCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (product: IProduct) => {
     const isProductInCart = cart.find((item) => item.id === product.id);
@@ -19,32 +34,56 @@ export const CartProvider = ({ children }: IChildrenProps) => {
             : item
         )
       );
+
+      window.setTimeout(() => {
+        setOpenCart(true);
+      }, 1000);
       return;
     } else {
+      window.setTimeout(() => {
+        setOpenCart(true);
+      }, 1000);
       setCart([...cart, product]);
     }
   };
 
-  const removeFromCart = (productId: number, quantity: number) => {
-    const isProductInCart = cart.find((item) => item.id === productId);
+  const removeFromCart = (productId: number) => {
+    const updatedCart = cart.filter((product) => product.id !== productId);
 
-    if (isProductInCart) {
-      setCart(
-        cart.map((item) =>
-          item.id === productId
-            ? {
-                ...isProductInCart,
-                quantity: isProductInCart.quantity - quantity,
-              }
-            : item
-        )
-      );
-      return;
-    }
+    setCart(updatedCart);
   };
 
+  function handleQuantityChange(productId: number, change: number) {
+    const updatedCart = cart
+      .map((product) => {
+        if (product.id === productId) {
+          if (product.quantity === 1 && change === -1) {
+            return null;
+          }
+          return {
+            ...product,
+            quantity: product.quantity + change,
+          };
+        }
+
+        return product;
+      })
+      .filter(Boolean) as IProduct[];
+
+    setCart(updatedCart);
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        handleQuantityChange,
+        setOpenCart,
+        openCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

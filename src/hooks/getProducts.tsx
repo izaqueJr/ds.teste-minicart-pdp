@@ -1,6 +1,4 @@
-async function getProductById(params: any) {
-  const productId = params.slug[0];
-
+async function getProductById(productId: string) {
   const productData = await fetch(
     `https://fakestoreapi.com/products/${productId}`,
     {

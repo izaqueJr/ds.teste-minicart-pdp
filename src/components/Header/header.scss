@@ -23,16 +23,4 @@
       font-size: $fs-xs;
     }
   }
-
-  &__cart {
-    &-button {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      border: none;
-      background-color: transparent;
-
-      gap: 16px;
-    }
-  }
 }

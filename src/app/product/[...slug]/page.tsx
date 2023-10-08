@@ -2,9 +2,11 @@ import React, { use } from "react";
 import "@/styles/product.scss";
 import { getProductById } from "@/hooks/getProducts";
 import AddToCartButton from "@/components/Product/AddToCartButton";
+import ProductPrice from "@/components/Product/ProductPrice";
+import { IProduct } from "@/types/product";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
-  const productData = use(getProductById(params));
+  const productData: IProduct = use(getProductById(params.slug[0]));
 
   return (
     <main className="product container">
@@ -18,9 +20,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
           <div className="product__content-right">
             <h1 className="product__title">{productData?.title}</h1>
-            <p className="product__price"> R$ {productData?.price}</p>
-
-            <AddToCartButton />
+            <ProductPrice price={productData?.price} />
+            <AddToCartButton productData={productData} />
 
             <article className="product__description">
               <h4 className="product__description--title">Descrição</h4>
