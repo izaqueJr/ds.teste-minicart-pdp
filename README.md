@@ -5,6 +5,7 @@ Este projeto faz parte de um desafio e consiste em uma simulação de um e-comme
 Ele apresenta páginas de produtos dinâmicas e um Minicart funcional, proporcionando uma experiência de compra interativa e intuitiva.
 
 <br>
+
 ## Tecnologias Utilizadas
 
 - Next.js
