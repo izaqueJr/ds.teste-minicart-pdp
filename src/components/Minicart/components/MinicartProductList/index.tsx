@@ -25,7 +25,7 @@ const MinicartProductList = ({ cartContext }: IMinicartProductListProps) => {
                 className="product-list__remove"
                 onClick={() => removeFromCart(product?.id)}
               >
-                <img src="/images/icon-remove.svg" alt="" />
+                <img src="/images/icon-remove.svg" alt="icone remover" />
               </button>
             </div>
 
@@ -44,10 +44,10 @@ const MinicartProductList = ({ cartContext }: IMinicartProductListProps) => {
 
                 <div className="product-list__quantity-selectors col">
                   <button onClick={() => handleQuantityChange(product?.id, 1)}>
-                    <img src="/images/icon-arrow-up.svg" alt="" />
+                    <img src="/images/icon-arrow-up.svg" alt="arrow up" />
                   </button>
                   <button onClick={() => handleQuantityChange(product?.id, -1)}>
-                    <img src="/images/icon-arrow-down.svg" alt="" />
+                    <img src="/images/icon-arrow-down.svg" alt="arrow down" />
                   </button>
                 </div>
               </div>

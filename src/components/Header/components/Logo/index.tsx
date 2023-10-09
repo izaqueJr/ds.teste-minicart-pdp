@@ -5,7 +5,7 @@ const Logo = () => {
     <div className="header__logo">
       <figure>
         <a href="/">
-          <img src="/images/icon-logo.svg" alt="" />
+          <img src="/images/icon-logo.svg" alt="logo" />
         </a>
       </figure>
     </div>

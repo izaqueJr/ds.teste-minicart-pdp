@@ -26,7 +26,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <div className="product__container">
             <div className="product__content-left">
               <figure className="product__image">
-                <img src={productData?.image} alt="" />
+                <img src={productData?.image} alt="product-image" />
               </figure>
             </div>
 

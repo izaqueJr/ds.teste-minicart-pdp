@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer col">
       <div className="footer__container row">
-        <img src="/images/icon-logo.svg" alt="" />
+        <img src="/images/icon-logo.svg" alt="logo" />
       </div>
       <div className="footer__container col">
         <p>© 2023 - Ecommerce </p>

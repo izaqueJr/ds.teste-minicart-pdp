@@ -37,7 +37,7 @@ const Shelf = ({ category, title }: IShelfProps) => {
             <SwiperSlide key={product.id}>
               <a href={`/product/${product.id}`} className="shelf__product col">
                 <figure className="shelf__product-image">
-                  <img src={product.image} alt="" />
+                  <img src={product.image} alt="product image" />
                 </figure>
                 <h3 className="shelf__product-name">{product.title}</h3>
                 <p className="shelf__product-price">
