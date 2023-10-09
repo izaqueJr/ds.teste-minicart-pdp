@@ -1,5 +1,5 @@
 import React from "react";
-import "./header.scss";
+import "@/styles/header.scss";
 import MiniCart from "../Minicart";
 import Logo from "./components/Logo";
 import Nav from "./components/Nav";
