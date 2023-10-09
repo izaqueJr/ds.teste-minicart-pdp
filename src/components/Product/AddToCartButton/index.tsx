@@ -31,7 +31,7 @@ const AddToCartButton = ({ productData }: IAddToCartButtonProps) => {
   return (
     <>
       <button className="product__button" onClick={handleAddToCart}>
-        <img src="/images/icon-cart.svg" alt="" />
+        <img src="/images/icon-cart.svg" alt="minicart" />
         <span>Adicionar ao carrinho</span>
       </button>
       <ToastContainer

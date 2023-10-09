@@ -17,21 +17,6 @@ const MiniCart = () => {
     setOpenCart(!openCart);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      const cartElement = document.getElementById("cart");
-      if (cartElement && !cartElement.contains(event.target)) {
-        setOpenCart(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   const total = cart.reduce(
     (acc: number, product: IProduct) => acc + product.price * product.quantity,
     0
@@ -41,8 +26,11 @@ const MiniCart = () => {
     <>
       <MinicartButton cartContext={cartContext} />
       {openCart && (
-        <div className="cart__wrapper" id="cart">
-          <div className={`cart__content ${openCart && "open"}`}>
+        <div className="cart__wrapper">
+          <div id="cart" className={`cart__content ${openCart && "open"}`}>
+            <button onClick={toggleCart} className="cart__button-close">
+              <img src="/images/icon-remove.svg" alt="close" />
+            </button>
             {cart?.length > 0 ? (
               <>
                 <h6 className="cart__title"> Meu carrinho </h6>
