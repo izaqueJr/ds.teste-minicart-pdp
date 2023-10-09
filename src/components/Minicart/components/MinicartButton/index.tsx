@@ -8,21 +8,22 @@ interface IMinicartProductListProps {
 }
 
 const MinicartButton = ({ cartContext }: IMinicartProductListProps) => {
-  const { openCart, setOpenCart } = cartContext;
+  const { openCart, setOpenCart, cart } = cartContext;
 
   const toggleCart = () => {
     setOpenCart(!openCart);
   };
 
   return (
-    <button onClick={toggleCart} className="mini-cart__button">
+    <button onClick={toggleCart} className="minicartButton">
+      <div className="cart__quantity">{cart.length}</div>
       <figure className="cart__icon">
         <img
           src="/images/icon-minicart.svg"
           alt="Ícone do Carrinho de Compras"
         />
       </figure>
-      CART
+      <span>CART</span>
     </button>
   );
 };

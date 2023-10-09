@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { useCart } from "@/context/cart";
-import "@/styles/minicart.scss";
 import { IProduct } from "@/types/product";
 import MinicartProductList from "./components/MinicartProductList";
 import MinicartButton from "./components/MinicartButton";
+import "@/styles/minicart.scss";
 
 const MiniCart = () => {
   const cartContext = useCart();

@@ -1,6 +1,7 @@
 "use client";
+import useCurrencyFormat from "@/utils/useCurrencyFormat";
 import React from "react";
-import useCurrencyFormat from "@/hooks/useCurrencyFormat";
+
 interface ProductPriceProps {
   price: number;
 }

@@ -1,27 +1,27 @@
 import React from "react";
 import "./header.scss";
 import MiniCart from "../Minicart";
+import Logo from "./components/Logo";
+import Nav from "./components/Nav";
 
 const Header = () => {
   return (
     <header className="header">
-      <div className="header__container">
-        <div className="header__logo">
-          <figure>
-            <a href="">
-              <img src="/images/icon-logo.svg" alt="" />
-            </a>
-          </figure>
+      <div className="header__container desktop">
+        <Logo />
+        <Nav />
+        <div className="header__cart">
+          <MiniCart />
         </div>
-        <nav className="header__navigation">
-          <ul>
-            <li className="header__menu-item">MENU ITEM 01</li>
-            <li className="header__menu-item">MENU ITEM 02</li>
-            <li className="header__menu-item">MENU ITEM 03</li>
-            <li className="header__menu-item">MENU ITEM 04</li>
-            <li className="header__menu-item">MENU ITEM 05</li>
-          </ul>
-        </nav>
+      </div>
+
+      <div className="header__container mobile">
+        <div className="header__menu-mobile">
+          <img src="/images/icon-menu.svg" alt="menu" />
+        </div>
+
+        <Logo />
+
         <div className="header__cart">
           <MiniCart />
         </div>

@@ -1,0 +1,23 @@
+@import "variables";
+.footer {
+  padding: 48px 24px;
+  background: #000;
+  gap: 24px;
+  &__container {
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      filter: invert(1);
+    }
+
+    p {
+      font-family: $font-secondary;
+      font-size: $fs-xs;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+    }
+  }
+}
