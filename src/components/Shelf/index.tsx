@@ -1,20 +1,32 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { use } from "react";
+import { use, useEffect } from "react";
 import { getProductsByCategory } from "@/hooks/getProducts";
 import { IProduct } from "@/types/product";
 import "swiper/css";
 import "@/styles/shelf.scss";
 import useCurrencyFormat from "@/utils/useCurrencyFormat";
-import { title } from "process";
 
 interface IShelfProps {
   category: string;
   title: string;
 }
 
+interface ICategoryProducts extends IProduct {
+  error?: string;
+}
+
 const Shelf = ({ category, title }: IShelfProps) => {
-  const products = use(getProductsByCategory(category));
+  const products: ICategoryProducts = use(getProductsByCategory(category));
+
+  if (products?.error) {
+    return (
+      <div className="shelf__error">
+        Ops... Estamos com problemas para carregar os produtos, tente novamente
+        mais tarde.
+      </div>
+    );
+  }
 
   return (
     <section className="shelf">
@@ -32,7 +44,7 @@ const Shelf = ({ category, title }: IShelfProps) => {
           },
         }}
       >
-        {products.map((product: IProduct) => {
+        {/* {products?.map((product: IProduct) => {
           return (
             <SwiperSlide key={product.id}>
               <a href={`/product/${product.id}`} className="shelf__product col">
@@ -46,7 +58,7 @@ const Shelf = ({ category, title }: IShelfProps) => {
               </a>
             </SwiperSlide>
           );
-        })}
+        })} */}
       </Swiper>
     </section>
   );
