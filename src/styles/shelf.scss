@@ -60,4 +60,9 @@
     font-weight: 700;
     line-height: 150%;
   }
+
+  &__error {
+    display: flex;
+    justify-content: center;
+  }
 }
