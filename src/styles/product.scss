@@ -130,4 +130,13 @@
     margin: 100px 0 200px;
     text-align: center;
   }
+
+  &__loading {
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+    img {
+      max-height: 200px;
+    }
+  }
 }

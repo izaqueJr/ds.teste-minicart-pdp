@@ -7,8 +7,6 @@ import Shelf from "@/components/Shelf";
 import ProductRatings from "@/components/Product/ProductRatings/index";
 import axios from "axios";
 import "@/styles/product.scss";
-import ContentLoader from "react-content-loader";
-import ProductLoader from "@/components/Product/ProductLoader";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [productData, setProductData] = useState<IProduct>();
@@ -67,7 +65,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </section>
       )}
 
-      {loading && <ProductLoader />}
+      {loading && (
+        <div className="product__loading row">
+          <img src="/images/logo.gif" />
+        </div>
+      )}
       <Shelf category="men's clothing" title="PRODUTOS RECOMENDADOS" />
     </main>
   );
