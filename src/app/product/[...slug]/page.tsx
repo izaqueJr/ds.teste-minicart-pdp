@@ -7,21 +7,26 @@ import Shelf from "@/components/Shelf";
 import ProductRatings from "@/components/Product/ProductRatings/index";
 import axios from "axios";
 import "@/styles/product.scss";
+import ContentLoader from "react-content-loader";
+import ProductLoader from "@/components/Product/ProductLoader";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [productData, setProductData] = useState<IProduct>();
   const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const url = `https://fakestoreapi.com/products/${params.slug[0]}`;
 
   useEffect(() => {
     axios
       .get(url)
       .then(function (res) {
+        setLoading(false);
         console.log(res.data);
         res.data.length === 0 ? setError(true) : setProductData(res.data);
       })
       .catch(function (error) {
         console.error(error);
+        setLoading(false);
         setError(true);
       });
   }, []);
@@ -62,6 +67,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </section>
       )}
 
+      {loading && <ProductLoader />}
       <Shelf category="men's clothing" title="PRODUTOS RECOMENDADOS" />
     </main>
   );

@@ -12,6 +12,7 @@
     "axios": "^1.5.1",
     "next": "13.5.4",
     "react": "^18",
+    "react-content-loader": "^6.2.1",
     "react-dom": "^18",
     "react-simple-star-rating": "^5.1.7",
     "react-toastify": "^9.1.3",
