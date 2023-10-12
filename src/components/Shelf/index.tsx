@@ -1,11 +1,11 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { use, useEffect, useState } from "react";
-import { getProductsByCategory } from "@/hooks/getProducts";
+import { useEffect, useState } from "react";
 import { IProduct } from "@/types/product";
 import "swiper/css";
 import "@/styles/shelf.scss";
 import useCurrencyFormat from "@/utils/useCurrencyFormat";
+import axios from "axios";
 
 interface IShelfProps {
   category: string;
@@ -18,16 +18,17 @@ interface ICategoryProducts extends Array<IProduct> {
 
 const Shelf = ({ category, title }: IShelfProps) => {
   const [products, setProducts] = useState<ICategoryProducts>([]);
-  const data: ICategoryProducts = use(getProductsByCategory(category));
-
+  const url = `https://fakestoreapi.com/products/category/${category}`;
   useEffect(() => {
-    setProducts(data);
-  }, [data]);
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => setProducts(json));
+  }, []);
 
   return (
     <section className="shelf">
       <h2 className="shelf__title">{title}</h2>
-      {data?.error ? (
+      {products?.error ? (
         <div className="shelf__error">
           Ops... Estamos com problemas para carregar os produtos, tente
           novamente mais tarde.

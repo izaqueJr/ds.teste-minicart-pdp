@@ -1,27 +1,40 @@
-import React, { use } from "react";
-
-import "@/styles/product.scss";
-import { getProductById } from "@/hooks/getProducts";
+"use client";
+import React, { useState, useEffect } from "react";
 import AddToCartButton from "@/components/Product/AddToCartButton";
 import ProductPrice from "@/components/Product/ProductPrice";
 import { IProduct } from "@/types/product";
 import Shelf from "@/components/Shelf";
 import ProductRatings from "@/components/Product/ProductRatings/index";
-
-interface IProductData extends IProduct {
-  error?: string;
-}
+import axios from "axios";
+import "@/styles/product.scss";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
-  const productData: IProductData = use(getProductById(params.slug[0]));
+  const [productData, setProductData] = useState<IProduct>();
+  const [error, setError] = useState<boolean>(false);
+  const url = `https://fakestoreapi.com/products/${params.slug[0]}`;
+
+  useEffect(() => {
+    axios
+      .get(url)
+      .then(function (res) {
+        console.log(res.data);
+        res.data.length === 0 ? setError(true) : setProductData(res.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+        setError(true);
+      });
+  }, []);
 
   return (
     <main className="product container">
-      {productData?.error ? (
+      {error && (
         <div className="product__error">
           <h2> Ops... Produto não encontrado :( </h2>
         </div>
-      ) : (
+      )}
+
+      {productData && (
         <section>
           <div className="product__container">
             <div className="product__content-left">

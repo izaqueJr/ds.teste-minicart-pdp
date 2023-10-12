@@ -11,14 +11,15 @@ interface IProductRatingsProps {
 
 const ProductRatings = ({ ratingValue }: IProductRatingsProps) => {
   const [rating, setRating] = useState(ratingValue.rate);
-  if (!ratingValue) return null;
   const handleRating = (rate: number) => {
     setRating(rate);
   };
 
+  if (!ratingValue) return <></>;
+
   return (
     <div className="product__rating row">
-      <span className="product__rating-text"> {ratingValue.rate} de 5</span>
+      <span className="product__rating-text"> {ratingValue?.rate} de 5</span>
 
       <Rating
         allowFraction={true}
