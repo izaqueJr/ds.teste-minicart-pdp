@@ -5,8 +5,7 @@ import { IProduct } from "@/types/product";
 import "swiper/css";
 import "@/styles/shelf.scss";
 import useCurrencyFormat from "@/utils/useCurrencyFormat";
-import axios from "axios";
-
+import Link from "next/link";
 interface IShelfProps {
   category: string;
   title: string;
@@ -51,7 +50,7 @@ const Shelf = ({ category, title }: IShelfProps) => {
             {products?.map((product: IProduct) => {
               return (
                 <SwiperSlide key={product.id}>
-                  <a
+                  <Link
                     href={`/product/${product.id}`}
                     className="shelf__product col"
                   >
@@ -62,7 +61,7 @@ const Shelf = ({ category, title }: IShelfProps) => {
                     <p className="shelf__product-price">
                       {useCurrencyFormat(product.price)}
                     </p>
-                  </a>
+                  </Link>
                 </SwiperSlide>
               );
             })}

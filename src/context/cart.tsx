@@ -10,19 +10,6 @@ export const CartProvider = ({ children }: IChildrenProps) => {
   const [cart, setCart] = useState<IProduct[]>([]);
   const [openCart, setOpenCart] = useState<boolean>(false);
 
-  const previousCart =
-    typeof window !== "undefined" ? sessionStorage.getItem("cart") : null;
-
-  useEffect(() => {
-    if (previousCart) {
-      setCart(JSON.parse(previousCart));
-    }
-  }, []);
-
-  useEffect(() => {
-    sessionStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
   const addToCart = (product: IProduct) => {
     const isProductInCart = cart.find((item) => item.id === product.id);
 
