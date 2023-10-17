@@ -11,7 +11,7 @@ export const CartProvider = ({ children }: IChildrenProps) => {
   const [openCart, setOpenCart] = useState<boolean>(false);
 
   const previousCart =
-    typeof window !== "undefined" ? localStorage.getItem("cart") : null;
+    typeof window !== "undefined" ? sessionStorage.getItem("cart") : null;
 
   useEffect(() => {
     if (previousCart) {
@@ -20,7 +20,7 @@ export const CartProvider = ({ children }: IChildrenProps) => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    sessionStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (product: IProduct) => {
